@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>file upload</title>
+</head>
+<body style="text-align: center;">
+   
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="name"> <br> <br>
+         <input type="file" name="file"> <br>
+         <button>upload</button>
+    </form>
+
+
+    <h1>get image</h1>
+    <h3 id="name"></h3>
+    <img id="img" src="" alt="image">
+
+
+    <script>
+        const img = document.getElementById("img")
+        const name = document.getElementById("name")
+        fetch('/all')
+        .then(res => res.json())
+        .then(data =>{
+        
+                // console.log(data)
+                // name.innerText = data.name
+            data.forEach(element => {
+                console.log(element)
+                name.innerText = element.name
+                img.src = element.image
+            });
+        })
+    </script>
+    
+</body>
+</html>
